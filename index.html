@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT-Market</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="layout">
+
+        <header class="header layout__header">
+            <div class="header__logo">IT-Market</div>
+            <div class="header__actions">
+                <button type="button" class="header__button">Увійти</button>
+                <button type="button" class="header__button">Кошик</button>
+            </div>
+        </header>
+
+        <nav class="nav layout__nav">
+            <a href="#" class="nav__link">Головна</a>
+            <a href="#" class="nav__link">Каталог</a>
+            <a href="#" class="nav__link">Про нас</a>
+        </nav>
+
+        <aside class="sidebar layout__sidebar">
+            <div class="filter">
+                <div class="filter__header">
+                    <h3 class="filter__title">Фільтри</h3>
+                    <button type="button" class="filter__reset" id="reset-filters">Скинути</button>
+                </div>
+
+                <div class="filter__group">
+                    <span class="filter__label">Категорії</span>
+                    
+                    <label class="filter__item">
+                        <input type="checkbox" class="filter__checkbox" data-filter="laptops">
+                        <span class="filter__text">Ноутбуки</span>
+                    </label>
+
+                    <label class="filter__item">
+                        <input type="checkbox" class="filter__checkbox" data-filter="smartphones">
+                        <span class="filter__text">Смартфони</span>
+                    </label>
+
+                    <label class="filter__item">
+                        <input type="checkbox" class="filter__checkbox" data-filter="gadgets">
+                        <span class="filter__text">Девайси та інше</span>
+                    </label>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main layout__main">
+            <div class="product-grid" id="product-grid">
+
+                <div class="product-card" data-category="gadgets">
+                    <img src="https://cdn.citrus.ua/imgcache/size_800/uploads/shop/1/7/1766430943-764708-1.webp" alt="Льодогенератор MPM" class="product-card__image">
+                    <h3 class="product-card__title">Льодогенератор MPM, MKD-04M</h3>
+                    <p class="product-card__price">4 699 ₴</p>
+                    <a href="https://citrus.ua/morozilnye-kamery/lodogenerator-mpm-mkd-04m-764708.html" class="product-card__button">Деталі</a>
+                </div>
+
+                <div class="product-card" data-category="gadgets">
+                    <img src="https://cdn.citrus.ua/imgcache/size_800/uploads/shop/1/7/1751962961-771136-01.webp" alt="Samsung Watch8" class="product-card__image">
+                    <h3 class="product-card__title">Смарт-годинник Samsung Galaxy Watch8</h3>
+                    <p class="product-card__price">11 499 ₴</p>
+                    <a href="https://citrus.ua/smart-chasy/smart-chasy-samsung-galaxy-watch8-40mm-silver-771136.html" class="product-card__button">Деталі</a>
+                </div>
+
+                <div class="product-card" data-category="smartphones">
+                    <img src="https://cdn.citrus.ua/imgcache/size_800/uploads/shop/8/9/895555eec5ffc1d214f13ade4a4b2c3d.webp" alt="iPhone 18 Pro" class="product-card__image">
+                    <h3 class="product-card__title">Смартфон Apple iPhone 18 Pro 1TB</h3>
+                    <p class="product-card__price">117 999 ₴</p>
+                    <a href="https://citrus.ua/smartfony/smartfon-iphone-18-pro-1tb-glacier-apple-804498.html" class="product-card__button">Деталі</a>
+                </div>
+
+                <div class="product-card" data-category="gadgets">
+                    <img src="https://cdn.citrus.ua/imgcache/size_800/uploads/shop/7/e/7eb4e6507bcc1e87512f88654c6b174a.webp" alt="AirPods 5" class="product-card__image">
+                    <h3 class="product-card__title">Apple AirPods 5 ANC (2026)</h3>
+                    <p class="product-card__price">8 599 ₴</p>
+                    <a href="https://citrus.ua/naushniki/apple-airpods-5-804500.html" class="product-card__button">Деталі</a>
+                </div>
+
+                <div class="product-card" data-category="laptops">
+                    <img src="https://cdn.citrus.ua/imgcache/size_800/uploads/shop/4/d/4ddb918da03bd2a17ae274228d80e196.webp" alt="Lenovo LOQ" class="product-card__image">
+                    <h3 class="product-card__title">Ноутбук Lenovo LOQ 15AHP11</h3>
+                    <p class="product-card__price">79 999 ₴</p>
+                    <a href="https://citrus.ua/noutbuki-i-ultrabuki/lenovo-loq-15ahp11-83tn00ddra-surge-green-797737.html" class="product-card__button">Деталі</a>
+                </div>
+
+                <div class="product-card" data-category="gadgets">
+                    <img src="https://cdn.citrus.ua/imgcache/size_800/uploads/shop/1/6/1697440497-opt.webp" alt="PS5 Slim" class="product-card__image">
+                    <h3 class="product-card__title">Ігрова консоль Sony PlayStation 5 Slim</h3>
+                    <p class="product-card__price">34 599 ₴</p>
+                    <a href="https://citrus.ua/igrovye-pristavki/igrovaya-konsol-sony-playstation-5-slim-1tb-730697.html" class="product-card__button">Деталі</a>
+                </div>
+
+                <div class="product-card" data-category="gadgets">
+                    <img src="https://cdn.citrus.ua/imgcache/size_800/uploads/shop/d/9/d9f1a04261567a05b516c9933f358565.webp" alt="Samsung TV" class="product-card__image">
+                    <h3 class="product-card__title">Телевізор Samsung 55" Crystal UHD</h3>
+                    <p class="product-card__price">24 999 ₴</p>
+                    <a href="https://citrus.ua/televizory/televizor-samsung-55-ue55u8000huxua-793819.html" class="product-card__button">Деталі</a>
+                </div>
+
+                <div class="product-card" data-category="gadgets">
+                    <img src="https://cdn.citrus.ua/imgcache/size_800/uploads/shop/1/7/1776437706-xiaomitva-pc-05.webp" alt="Xiaomi TV" class="product-card__image">
+                    <h3 class="product-card__title">Телевізор Xiaomi TV A 32 2026</h3>
+                    <p class="product-card__price">7 499 ₴</p>
+                    <a href="https://citrus.ua/televizory/televizor-xiaomi-tv-a-32-2026-l32mb-ame-793302.html" class="product-card__button">Деталі</a>
+                </div>
+
+            </div>
+        </main>
+
+        <footer class="footer layout__footer">
+            <p>© 2026 IT-Market. Всі права захищено.</p>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
