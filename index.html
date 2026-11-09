@@ -36,6 +36,20 @@
                     <button type="button" class="filter__reset" id="reset-filters">Скинути</button>
                 </div>
 
+        
+                <div class="filter__group">
+                    <span class="filter__label">Пошук</span>
+                    <input type="text" id="search-input" class="filter__input" placeholder="Назва товару...">
+                    
+                    <span class="filter__label">Сортування</span>
+                    <select id="sort-select" class="filter__select">
+                        <option value="default">Без сортування</option>
+                        <option value="price-asc">Ціна ↑</option>
+                        <option value="price-desc">Ціна ↓</option>
+                        <option value="title">За назвою</option>
+                    </select>
+                </div>
+
                 <div class="filter__group">
                     <span class="filter__label">Категорії</span>
                     
@@ -58,10 +72,8 @@
         </aside>
 
         <main class="main layout__main">
-            <!-- Підсумкові показники (пункт 4) -->
             <p class="stats" id="stats"></p>
 
-            <!-- Форма додавання товару (пункт 4) -->
             <form class="form" id="product-form" novalidate>
                 <h2 class="form__title">Додати товар</h2>
                 <div class="form__group">
@@ -85,7 +97,6 @@
                 <p class="form__error" id="form-error"></p>
             </form>
 
-            <!-- Контейнер, куди JS рендеритиме картки (пункт 4) -->
             <div class="product-grid" id="product-grid"></div>
         </main>
 
