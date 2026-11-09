@@ -2,6 +2,7 @@
     "use strict";
 
     const bindEvents = (state, formElement, grid, stats) => {
+        
         // === ПУНКТ 5: ДЕЛЕГУВАННЯ ПОДІЙ (Кнопки в картках) ===
         grid.addEventListener("click", (event) => {
             const btn = event.target.closest("button[data-action]");
@@ -19,7 +20,6 @@
             } else if (action === "toggle") {
                 item.selected = !item.selected;
             } else if (action === "edit") {
-                // Редагування на місці
                 const titleEl = card.querySelector(".product-card__title");
                 const input = document.createElement("input");
                 input.type = "text";
@@ -38,10 +38,9 @@
                 };
                 input.addEventListener("blur", save);
                 input.addEventListener("keydown", e => { if (e.key === "Enter") input.blur(); });
-                return; // Чекаємо на blur, не перемальовуємо зараз
+                return; // Чекаємо на blur
             }
 
-            // Зберігаємо та перемальовуємо після видалення/перемикання
             App.storage.save(state.items);
             App.render.renderList(state.items, grid, stats);
         });
@@ -64,14 +63,12 @@
             const checkedCats = Array.from(document.querySelectorAll('.filter__checkbox:checked'))
                 .map(cb => cb.dataset.filter);
 
-            // Фільтрація
             let filtered = state.items.filter(item => {
                 const matchesSearch = item.title.toLowerCase().includes(currentSearch.toLowerCase());
                 const matchesCategory = checkedCats.length === 0 || checkedCats.includes(item.category);
                 return matchesSearch && matchesCategory;
             });
 
-            // Сортування (на копії масиву)
             if (currentSort === "price-asc") {
                 filtered = [...filtered].sort((a, b) => a.price - b.price);
             } else if (currentSort === "price-desc") {
@@ -80,28 +77,23 @@
                 filtered = [...filtered].sort((a, b) => a.title.localeCompare(b.title));
             }
 
-            // Перемальовуємо відфільтрований список
             App.render.renderList(filtered, grid, stats);
         };
 
-        // Обробник пошуку (з debounce 400мс)
         searchInput.addEventListener("input", debounce((e) => {
             currentSearch = e.target.value;
             applyFilters();
         }, 400));
 
-        // Обробник сортування
         sortSelect.addEventListener("change", (e) => {
             currentSort = e.target.value;
             applyFilters();
         });
 
-        // Обробники чекбоксів категорій
         document.querySelectorAll('.filter__checkbox').forEach(cb => {
             cb.addEventListener('change', applyFilters);
         });
 
-        // Кнопка "Скинути"
         const resetBtn = document.getElementById('reset-filters');
         if (resetBtn) {
             resetBtn.addEventListener('click', () => {
@@ -114,35 +106,69 @@
             });
         }
 
-        // === ФОРМА ДОДАВАННЯ (Пункт 4, 8) ===
+        // === ПУНКТ 8: ВАЛІДАЦІЯ ФОРМИ ===
+        const errorP = document.getElementById("form-error");
+        const titleInput = formElement.elements.title;
+        const priceInput = formElement.elements.price;
+
+        // Жива валідація поля "Назва"
+        titleInput.addEventListener("input", () => {
+            if (titleInput.validity.tooShort) {
+                titleInput.setCustomValidity("Назва занадто коротка (мінімум 3 символи)");
+            } else {
+                titleInput.setCustomValidity(""); // скидаємо кастомну помилку
+            }
+        });
+
+        // Жива валідація поля "Ціна"
+        priceInput.addEventListener("input", () => {
+            if (priceInput.validity.rangeUnderflow) {
+                priceInput.setCustomValidity("Ціна не може бути менше 1 грн");
+            } else {
+                priceInput.setCustomValidity("");
+            }
+        });
+
+        // Обробка submit
         formElement.addEventListener("submit", (event) => {
-            event.preventDefault(); // Зупиняємо перезавантаження
-            
+            event.preventDefault(); // Скасовуємо перезавантаження сторінки
+
+            // Перевіряємо всю форму через браузерне API
+            if (!formElement.checkValidity()) {
+                errorP.textContent = "Будь ласка, виправте помилки у формі.";
+                
+                // Знаходимо перше невалідне поле, ставимо йому aria-invalid і фокусуємось
+                const firstInvalid = formElement.querySelector(':invalid');
+                if (firstInvalid) {
+                    firstInvalid.setAttribute("aria-invalid", "true");
+                    firstInvalid.focus();
+                }
+                
+                // Показуємо стандартні підказки браузера
+                formElement.reportValidity(); 
+                return;
+            }
+
+            // Якщо все валідно — збираємо дані
             const fd = new FormData(formElement);
             const title = String(fd.get("title")).trim();
             const price = Number(fd.get("price"));
             const category = String(fd.get("category"));
-            const errorP = document.getElementById("form-error");
 
-            // Базова валідація
-            if (title.length < 3) {
-                errorP.textContent = "Назва — мінімум 3 символи";
-                formElement.elements.title.focus();
-                return;
-            }
-            if (isNaN(price) || price <= 0) {
-                errorP.textContent = "Ціна має бути більше 0";
-                formElement.elements.price.focus();
-                return;
-            }
+            // Додаткова перевірка на порожню категорію (бо select з required, але про всяк випадок)
             if (!category) {
-                errorP.textContent = "Оберіть категорію";
+                errorP.textContent = "Оберіть категорію.";
+                formElement.elements.category.focus();
                 return;
             }
 
+            // Очищаємо повідомлення про помилку
             errorP.textContent = "";
+            
+            // Знімаємо aria-invalid з усіх полів
+            formElement.querySelectorAll('[aria-invalid]').forEach(el => el.removeAttribute('aria-invalid'));
 
-            // Створюємо новий товар і додаємо в масив
+            // Створюємо новий товар
             state.items.push({
                 id: Date.now(),
                 title, price, category,
@@ -151,8 +177,14 @@
 
             // Зберігаємо і перемальовуємо
             App.storage.save(state.items);
-            applyFilters(); // Використовуємо applyFilters, щоб врахувати поточні фільтри
+            applyFilters(); // враховує поточні фільтри
+            
+            // Очищаємо форму
             formElement.reset();
+            
+            // Скидаємо кастомні помилки
+            titleInput.setCustomValidity("");
+            priceInput.setCustomValidity("");
         });
     };
 
