@@ -38,7 +38,7 @@
                 };
                 input.addEventListener("blur", save);
                 input.addEventListener("keydown", e => { if (e.key === "Enter") input.blur(); });
-                return; // Чекаємо на blur
+                return;
             }
 
             App.storage.save(state.items);
@@ -111,16 +111,14 @@
         const titleInput = formElement.elements.title;
         const priceInput = formElement.elements.price;
 
-        // Жива валідація поля "Назва"
         titleInput.addEventListener("input", () => {
             if (titleInput.validity.tooShort) {
                 titleInput.setCustomValidity("Назва занадто коротка (мінімум 3 символи)");
             } else {
-                titleInput.setCustomValidity(""); // скидаємо кастомну помилку
+                titleInput.setCustomValidity("");
             }
         });
 
-        // Жива валідація поля "Ціна"
         priceInput.addEventListener("input", () => {
             if (priceInput.validity.rangeUnderflow) {
                 priceInput.setCustomValidity("Ціна не може бути менше 1 грн");
@@ -129,63 +127,71 @@
             }
         });
 
-        // Обробка submit
         formElement.addEventListener("submit", (event) => {
-            event.preventDefault(); // Скасовуємо перезавантаження сторінки
+            event.preventDefault();
 
-            // Перевіряємо всю форму через браузерне API
             if (!formElement.checkValidity()) {
                 errorP.textContent = "Будь ласка, виправте помилки у формі.";
-                
-                // Знаходимо перше невалідне поле, ставимо йому aria-invalid і фокусуємось
                 const firstInvalid = formElement.querySelector(':invalid');
                 if (firstInvalid) {
                     firstInvalid.setAttribute("aria-invalid", "true");
                     firstInvalid.focus();
                 }
-                
-                // Показуємо стандартні підказки браузера
                 formElement.reportValidity(); 
                 return;
             }
 
-            // Якщо все валідно — збираємо дані
             const fd = new FormData(formElement);
             const title = String(fd.get("title")).trim();
             const price = Number(fd.get("price"));
             const category = String(fd.get("category"));
 
-            // Додаткова перевірка на порожню категорію (бо select з required, але про всяк випадок)
             if (!category) {
                 errorP.textContent = "Оберіть категорію.";
                 formElement.elements.category.focus();
                 return;
             }
 
-            // Очищаємо повідомлення про помилку
             errorP.textContent = "";
-            
-            // Знімаємо aria-invalid з усіх полів
             formElement.querySelectorAll('[aria-invalid]').forEach(el => el.removeAttribute('aria-invalid'));
 
-            // Створюємо новий товар
             state.items.push({
                 id: Date.now(),
                 title, price, category,
                 selected: false
             });
 
-            // Зберігаємо і перемальовуємо
             App.storage.save(state.items);
-            applyFilters(); // враховує поточні фільтри
-            
-            // Очищаємо форму
+            applyFilters();
             formElement.reset();
-            
-            // Скидаємо кастомні помилки
             titleInput.setCustomValidity("");
             priceInput.setCustomValidity("");
         });
+
+        // === ПУНКТ 9: ОЧИЩЕННЯ LOCALSTORAGE ===
+        const clearStorageBtn = document.getElementById("clear-storage");
+        if (clearStorageBtn) {
+            clearStorageBtn.addEventListener("click", () => {
+                // Запитуємо підтвердження
+                if (confirm("Ви впевнені, що хочете видалити ВСІ товари зі сховища?")) {
+                    // 1. Очищаємо масив у пам'яті
+                    state.items.length = 0;
+                    
+                    // 2. Видаляємо з localStorage
+                    App.storage.clear();
+                    
+                    // 3. Скидаємо фільтри та пошук
+                    document.querySelectorAll('.filter__checkbox').forEach(cb => cb.checked = false);
+                    searchInput.value = "";
+                    currentSearch = "";
+                    currentSort = "default";
+                    sortSelect.value = "default";
+                    
+                    // 4. Перемальовуємо порожній список
+                    applyFilters();
+                }
+            });
+        }
     };
 
     App.events = { bindEvents };
