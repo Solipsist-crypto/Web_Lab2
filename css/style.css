@@ -305,3 +305,213 @@ body {
         scroll-behavior: auto !important;
     }
 }
+/* ==========================================
+   СТИЛІ ДЛЯ ФОРМИ ТА КАРТОК (ЛР3)
+   ========================================== */
+
+/* --- Форма додавання товару --- */
+.form {
+    max-width: 500px;
+    margin-bottom: var(--spacing-4xl);
+    padding: var(--spacing-2xl);
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.form__title {
+    margin-bottom: var(--spacing-xl);
+    font-size: var(--font-size-lg);
+    color: var(--color-text-primary);
+}
+
+.form__group {
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.form__group label {
+    font-size: var(--font-size-sm);
+    font-weight: bold;
+    color: var(--color-text-primary);
+}
+
+.form__group input,
+.form__group select {
+    padding: var(--spacing-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-base);
+    background-color: var(--color-bg-body);
+    color: var(--color-text-primary);
+    transition: border-color 0.2s ease;
+}
+
+.form__group input:focus,
+.form__group select:focus {
+    outline: none;
+    border-color: var(--color-bg-btn);
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.form__group input:invalid[aria-invalid="true"] {
+    border-color: #e74c3c;
+}
+
+.form__submit {
+    padding: var(--spacing-md) var(--spacing-2xl);
+    background-color: var(--color-bg-btn);
+    color: var(--color-text-btn);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-base);
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    width: 100%;
+}
+
+.form__submit:hover {
+    background-color: var(--color-bg-btn-hover);
+}
+
+.form__error {
+    color: #e74c3c;
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-sm);
+    min-height: 20px; /* щоб не стрибала верстка */
+}
+
+/* --- Підсумкові показники --- */
+.stats {
+    margin-bottom: var(--spacing-xl);
+    font-size: var(--font-size-md);
+    font-weight: bold;
+    color: var(--color-text-primary);
+    padding: var(--spacing-md);
+    background-color: var(--color-bg-sidebar);
+    border-radius: var(--radius-sm);
+}
+
+/* --- Сітка карток --- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--spacing-2xl);
+}
+
+.product-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-xl);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.product-card__image {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: var(--spacing-md);
+    background-color: #fff; /* фон для прозорих картинок */
+    border-radius: var(--radius-sm);
+}
+
+.product-card__title {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-sm);
+    font-weight: bold;
+    flex-grow: 1; /* щоб ціна завжди була знизу */
+}
+
+.product-card__price {
+    font-size: var(--font-size-md);
+    font-weight: bold;
+    color: var(--color-text-price);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* --- Кнопки в картці --- */
+.product-card__button {
+    width: 100%;
+    padding: var(--spacing-sm) 0;
+    margin-bottom: var(--spacing-xs);
+    background-color: var(--color-bg-btn);
+    color: var(--color-text-btn);
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    transition: opacity 0.2s ease;
+}
+
+.product-card__button:hover {
+    opacity: 0.8;
+}
+
+/* Модифікатори кнопок */
+.product-card__button--edit {
+    background-color: #f39c12; /* Помаранчевий для редагування */
+}
+
+.product-card__button--delete {
+    background-color: #e74c3c; /* Червоний для видалення */
+}
+
+.product-card__button--active {
+    background-color: var(--color-text-price); /* Зелений, якщо в обраному */
+}
+
+/* Поле редагування на місці */
+.product-card__edit-input {
+    width: 100%;
+    padding: var(--spacing-sm);
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-sm);
+    border: 1px solid var(--color-bg-btn);
+    border-radius: var(--radius-sm);
+    text-align: center;
+}
+
+/* --- Елементи в бічній панелі (Пошук, Сортування) --- */
+.filter__input,
+.filter__select {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-md);
+    background-color: var(--color-bg-body);
+    color: var(--color-text-primary);
+}
+
+.filter__input:focus,
+.filter__select:focus {
+    outline: none;
+    border-color: var(--color-bg-btn);
+}
+
+/* Темна тема для карток (корекція) */
+@media (prefers-color-scheme: dark) {
+    .product-card__image {
+        background-color: #333; /* Темний фон під картинками в темній темі */
+    }
+    .form__group input,
+    .form__group select,
+    .filter__input,
+    .filter__select {
+        background-color: var(--color-bg-body);
+    }
+}
