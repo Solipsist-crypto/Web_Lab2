@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT-Market - Новини та відгуки</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="js/app.js"></script>
+</head>
+<body>
+    <div class="layout">
+        <header class="header layout__header">
+            <div class="header__logo">IT-Market Новини</div>
+            <div class="header__actions">
+                <a href="index.html" class="header__button" style="text-decoration: none; color: inherit;">Назад до каталогу</a>
+            </div>
+        </header>
+
+        <nav class="nav layout__nav">
+            <a href="index.html" class="nav__link">Каталог товарів</a>
+            <a href="api.html" class="nav__link">Новини та відгуки</a>
+        </nav>
+
+        <main class="main layout__main">
+            <h1 style="margin-bottom: 20px;">Стрічка новин та відгуків</h1>
+
+            <!-- Фільтр та кнопки -->
+            <div class="filter__group" style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                <input type="text" id="api-search" class="filter__input" placeholder="Пошук новини за назвою..." style="flex: 1; min-width: 200px;">
+                <button id="btn-retry" class="filter__reset" style="display: none; color: red; cursor: pointer;">Повторити</button>
+                <button id="btn-show-more" class="form__submit" style="width: auto; margin-top: 0;">Показати ще</button>
+            </div>
+
+            <!-- Індикатор завантаження -->
+            <div id="loader" style="display: none; text-align: center; padding: 20px;">
+                <p>Завантаження новин...</p>
+            </div>
+
+            <!-- Повідомлення про помилку -->
+            <div id="error-box" class="form__error" style="display: none; text-align: center; padding: 20px; background: #ffe6e6; border-radius: 8px;"></div>
+
+            <!-- Контейнер для карток -->
+            <div class="product-grid" id="api-grid"></div>
+
+            <!-- Блок для коментарів -->
+            <div id="comments-section" style="display: none; margin-top: 40px; border-top: 2px solid var(--color-border); padding-top: 20px;">
+                <h2 id="comments-title" style="margin-bottom: 20px;">Відгуки</h2>
+                <div id="comments-list"></div>
+                <button id="btn-close-comments" class="filter__reset" style="margin-top: 15px;">Закрити відгуки</button>
+            </div>
+        </main>
+
+        <footer class="footer layout__footer">
+            <p>© 2026 IT-Market. Всі права захищені.</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+[33m97106d8[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mlab03[m[33m, [m[1;33mtag: [m[1;33mlab03[m[33m, [m[1;31morigin/lab03[m[33m)[m docs: update README for lab03 and remove PDF files
+[33m6e44141[m style: add responsive styles for form, product cards and sidebar controls
+[33mfd182ae[m feat(main): bootstrap app from storage on DOMContentLoaded
+[33mb2869cb[m feat(storage): load/save/clear localStorage with try-catch guard
+[33med4541e[m feat(filters): search with debounce, sorting on copy, category filter
+[33m48abb88[m feat(filters): search with debounce, sorting on copy, category filter
+[33mb06ef72[m feat(events): delegate clicks and inline editing
+[33mf4ae941[m feat(render): render product cards with createElement and stats
+[33mb4efaa6[m feat(strict): compare strict vs sloppy mode behavior
+[33m2a8a382[m feat(tasks): implement custom map/filter/reduce/find/flat/deepClone with assertions
+[33m5450bb1[m feat: add script skeleton with defer and strict mode (IIFE + App namespace)
+[33me434e2d[m chore: create lab03 branch, add .gitignore, prepare structure
+[33m6f4b81e[m[33m ([m[1;33mtag: [m[1;33mlab02[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m feat: complete lab 2 layout with BEM, grid and JS filtering
