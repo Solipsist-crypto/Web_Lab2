@@ -1,75 +1,75 @@
 @use '../abstracts/variables' as *;
 
 .form {
-    max-width: 500px;
-    margin-bottom: $spacing-4xl;
-    padding: $spacing-2xl;
-    background-color: $color-bg-card;
-    border: 1px solid $color-border;
-    border-radius: $radius-md;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  max-width: 500px;
+  margin-bottom: $spacing-4xl;
+  padding: $spacing-2xl;
+  background-color: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 
-    &__title {
-        margin-bottom: $spacing-xl;
-        font-size: $font-size-lg;
-        color: $color-text-primary;
+  &__title {
+    margin-bottom: $spacing-xl;
+    font-size: $font-size-lg;
+    color: $color-text-primary;
+  }
+
+  &__group {
+    margin-bottom: $spacing-lg;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+
+    label {
+      font-size: $font-size-sm;
+      font-weight: bold;
+      color: $color-text-primary;
     }
 
-    &__group {
-        margin-bottom: $spacing-lg;
-        display: flex;
-        flex-direction: column;
-        gap: $spacing-xs;
+    input,
+    select {
+      padding: $spacing-md;
+      border: 1px solid $color-border;
+      border-radius: $radius-sm;
+      font-size: $font-size-base;
+      background-color: $color-bg-body;
+      color: $color-text-primary;
+      transition: border-color 0.2s ease;
 
-        label {
-            font-size: $font-size-sm;
-            font-weight: bold;
-            color: $color-text-primary;
-        }
+      &:focus {
+        outline: none;
+        border-color: $color-bg-btn;
+        box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+      }
 
-        input,
-        select {
-            padding: $spacing-md;
-            border: 1px solid $color-border;
-            border-radius: $radius-sm;
-            font-size: $font-size-base;
-            background-color: $color-bg-body;
-            color: $color-text-primary;
-            transition: border-color 0.2s ease;
-
-            &:focus {
-                outline: none;
-                border-color: $color-bg-btn;
-                box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
-            }
-
-            &:invalid[aria-invalid="true"] {
-                border-color: #e74c3c;
-            }
-        }
+      &:invalid[aria-invalid='true'] {
+        border-color: #e74c3c;
+      }
     }
+  }
 
-    &__submit {
-        padding: $spacing-md $spacing-2xl;
-        background-color: $color-bg-btn;
-        color: $color-text-btn;
-        border: none;
-        border-radius: $radius-sm;
-        font-size: $font-size-base;
-        font-weight: bold;
-        cursor: pointer;
-        transition: background-color 0.2s ease;
-        width: 100%;
+  &__submit {
+    padding: $spacing-md $spacing-2xl;
+    background-color: $color-bg-btn;
+    color: $color-text-btn;
+    border: none;
+    border-radius: $radius-sm;
+    font-size: $font-size-base;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    width: 100%;
 
-        &:hover {
-            background-color: $color-bg-btn-hover;
-        }
+    &:hover {
+      background-color: $color-bg-btn-hover;
     }
+  }
 
-    &__error {
-        color: #e74c3c;
-        font-size: $font-size-sm;
-        margin-top: $spacing-sm;
-        min-height: 20px;
-    }
+  &__error {
+    color: #e74c3c;
+    font-size: $font-size-sm;
+    margin-top: $spacing-sm;
+    min-height: 20px;
+  }
 }

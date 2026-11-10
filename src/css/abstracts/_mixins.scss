@@ -1,11 +1,11 @@
 @mixin respond-from($width) {
-    @media (min-width: $width) {
-        @content;
-    }
+  @media (min-width: $width) {
+    @content;
+  }
 }
 
 @mixin dark-theme {
-    @media (prefers-color-scheme: dark) {
-        @content;
-    }
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
 }

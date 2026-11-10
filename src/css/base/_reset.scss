@@ -1,13 +1,13 @@
 @use '../abstracts/variables' as *;
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    color: $color-text-primary;
-    background-color: $color-bg-body;
+  font-family: Arial, sans-serif;
+  color: $color-text-primary;
+  background-color: $color-bg-body;
 }

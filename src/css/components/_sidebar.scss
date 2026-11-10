@@ -1,64 +1,64 @@
 @use '../abstracts/variables' as *;
 
 .sidebar {
-    background-color: $color-bg-sidebar;
-    padding: $spacing-2xl;
-    border-right: 1px solid $color-border;
+  background-color: $color-bg-sidebar;
+  padding: $spacing-2xl;
+  border-right: 1px solid $color-border;
 }
 
 .filter {
-    &__header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: $spacing-xl;
-        border-bottom: 1px solid $color-border;
-        padding-bottom: $spacing-sm;
-    }
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-xl;
+    border-bottom: 1px solid $color-border;
+    padding-bottom: $spacing-sm;
+  }
 
-    &__title {
-        font-size: $font-size-md;
-        font-weight: bold;
-    }
+  &__title {
+    font-size: $font-size-md;
+    font-weight: bold;
+  }
 
-    &__reset {
-        background: none;
-        border: none;
-        color: $color-bg-btn;
-        cursor: pointer;
-        font-size: $font-size-sm;
-        transition: opacity $transition-speed ease;
+  &__reset {
+    background: none;
+    border: none;
+    color: $color-bg-btn;
+    cursor: pointer;
+    font-size: $font-size-sm;
+    transition: opacity $transition-speed ease;
 
-        &:hover {
-            opacity: 0.7;
-        }
+    &:hover {
+      opacity: 0.7;
     }
+  }
 
-    &__group {
-        display: flex;
-        flex-direction: column;
-        gap: $spacing-md;
-    }
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
 
-    &__label {
-        font-size: $font-size-sm;
-        font-weight: bold;
-        margin-bottom: $spacing-xs;
-    }
+  &__label {
+    font-size: $font-size-sm;
+    font-weight: bold;
+    margin-bottom: $spacing-xs;
+  }
 
-    &__item {
-        display: flex;
-        align-items: center;
-        gap: $spacing-sm;
-        cursor: pointer;
-        font-size: $font-size-base;
-        user-select: none;
-    }
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    cursor: pointer;
+    font-size: $font-size-base;
+    user-select: none;
+  }
 
-    &__checkbox {
-        width: 16px;
-        height: 16px;
-        cursor: pointer;
-        accent-color: $color-bg-btn;
-    }
+  &__checkbox {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: $color-bg-btn;
+  }
 }
