@@ -1,0 +1,22 @@
+@use '../abstracts/variables' as *;
+
+.header {
+    background-color: $color-bg-header;
+    color: $color-text-header;
+    padding: $spacing-xl $spacing-4xl;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__actions {
+        display: flex;
+        gap: $spacing-md;
+    }
+
+    &__button {
+        padding: $spacing-xs $spacing-md;
+        border-radius: $radius-sm;
+        border: none;
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,92 @@
+@use '../abstracts/variables' as *;
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax($card-min-width, 1fr));
+    gap: $spacing-2xl;
+}
+
+.product-card {
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    padding: $spacing-xl;
+    text-align: center;
+    background-color: $color-bg-card;
+    display: flex;
+    flex-direction: column;
+    transition: transform $transition-speed ease, box-shadow $transition-speed ease;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    &--hidden {
+        display: none !important;
+    }
+
+    &__image {
+        width: 100%;
+        height: $card-img-height;
+        object-fit: contain;
+        margin-bottom: $spacing-lg;
+        background-color: #fff;
+        border-radius: $radius-sm;
+    }
+
+    &__title {
+        font-size: $font-size-base;
+        margin-bottom: $spacing-sm;
+        font-weight: bold;
+        flex-grow: 1;
+    }
+
+    &__price {
+        font-size: $font-size-sm;
+        font-weight: bold;
+        color: $color-text-price;
+        margin-bottom: $spacing-lg;
+    }
+
+    &__button {
+        margin-top: auto;
+        display: inline-block;
+        padding: $spacing-xs $spacing-lg;
+        background-color: $color-bg-btn;
+        color: $color-text-btn;
+        text-decoration: none;
+        border-radius: $radius-sm;
+        transition: opacity $transition-speed ease;
+        border: none;
+        cursor: pointer;
+        font-size: $font-size-sm;
+
+        &:hover,
+        &:focus {
+            opacity: 0.85;
+            outline: none;
+        }
+
+        &--edit {
+            background-color: #f39c12;
+        }
+
+        &--delete {
+            background-color: #e74c3c;
+        }
+
+        &--active {
+            background-color: $color-text-price;
+        }
+    }
+
+    &__edit-input {
+        width: 100%;
+        padding: $spacing-sm;
+        font-size: $font-size-base;
+        margin-bottom: $spacing-sm;
+        border: 1px solid $color-bg-btn;
+        border-radius: $radius-sm;
+        text-align: center;
+    }
+}

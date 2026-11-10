@@ -1,0 +1,44 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// --- Сітка сторінки (LAYOUT) ---
+.layout {
+    display: grid;
+    min-height: 100vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto 1fr auto;
+    grid-template-areas:
+        "header"
+        "nav"
+        "sidebar"
+        "main"
+        "footer";
+
+    &__header  { grid-area: header; }
+    &__nav     { grid-area: nav; }
+    &__sidebar { grid-area: sidebar; }
+    &__main    { grid-area: main; }
+    &__footer  { grid-area: footer; }
+
+    @include respond-from($bp-tablet) {
+        grid-template-columns: $sidebar-width 1fr;
+        grid-template-rows: auto auto 1fr auto;
+        grid-template-areas:
+            "header header"
+            "nav nav"
+            "sidebar main"
+            "footer footer";
+    }
+}
+
+.main {
+    background-color: $color-bg-container;
+    padding: $spacing-4xl;
+}
+
+.footer {
+    background-color: $color-bg-header;
+    color: $color-text-header;
+    padding: $spacing-xl;
+    text-align: center;
+}

@@ -1,0 +1,53 @@
+// Кольори (світла тема)
+$color-bg-body: #ffffff;
+$color-bg-container: #ffffff;
+$color-bg-header: #2c3e50;
+$color-bg-nav: #34495e;
+$color-bg-sidebar: #ecf0f1;
+$color-bg-card: #ffffff;
+$color-bg-btn: #3498db;
+$color-bg-btn-hover: #2980b9;
+$color-text-primary: #333333;
+$color-text-header: #ecf0f1;
+$color-text-price: #27ae60;
+$color-text-btn: #ffffff;
+$color-border: #bdc3c7;
+
+// Відступи
+$spacing-xs: 6px;
+$spacing-sm: 8px;
+$spacing-md: 10px;
+$spacing-lg: 12px;
+$spacing-xl: 15px;
+$spacing-2xl: 20px;
+$spacing-3xl: 25px;
+$spacing-4xl: 30px;
+
+// Радіуси
+$radius-sm: 4px;
+$radius-md: 8px;
+
+// Шрифти
+$font-size-sm: 14px;
+$font-size-base: 15px;
+$font-size-md: 16px;
+$font-size-lg: 24px;
+
+// Розміри
+$card-min-width: 200px;
+$card-img-height: 180px;
+$sidebar-width: 250px;
+$transition-speed: 0.3s;
+
+// Точки перелому
+$bp-tablet: 768px;
+
+// Темна тема (значення)
+$dark-bg-body: #121212;
+$dark-bg-container: #1e1e1e;
+$dark-bg-header: #1a252f;
+$dark-bg-nav: #2c3e50;
+$dark-bg-sidebar: #242424;
+$dark-bg-card: #2c2c2c;
+$dark-text-primary: #e0e0e0;
+$dark-border: #444444;

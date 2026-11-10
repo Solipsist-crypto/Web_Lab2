@@ -1,0 +1,18 @@
+@use '../abstracts/variables' as *;
+
+.filter__input,
+.filter__select {
+    width: 100%;
+    padding: $spacing-sm;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    font-size: $font-size-sm;
+    margin-bottom: $spacing-md;
+    background-color: $color-bg-body;
+    color: $color-text-primary;
+
+    &:focus {
+        outline: none;
+        border-color: $color-bg-btn;
+    }
+}
