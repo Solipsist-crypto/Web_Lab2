@@ -1,5 +1,6 @@
 (function () {
     "use strict";
+    /* eslint-disable no-undef */
     const check = (label, fn) => {
         try {
             console.log(`[STRICT] ${label}:`, fn());
@@ -16,3 +17,4 @@
     check("Parse error: with", () => new Function('"use strict"; with (Math) return PI;')());
     check("Parse error: octal", () => new Function('"use strict"; return 010;')());
 })();
+/* eslint-enable no-undef */

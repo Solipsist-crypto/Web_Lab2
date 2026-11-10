@@ -19,13 +19,13 @@ export async function request(url, options = {}) {
         try {
             return await response.json();
         } catch (e) {
-            throw new Error('Не вдалося розпарсити JSON відповіді');
+            throw new Error('Не вдалося розпарсити JSON відповіді', { cause: e });
         }
-    } catch (error) {
-        // Пробрасуємо скасування та тайм-аут окремо
+        } catch (error) {
         if (error.name === 'AbortError') throw error;
-        if (error.name === 'TimeoutError') throw new Error('Перевищено час очікування (5 секунд)');
-        
-        throw new Error(error.message || 'Помилка мережі');
+        if (error.name === 'TimeoutError') {
+            throw new Error('Перевищено час очікування (5 секунд)', { cause: error });
+        }
+        throw new Error(error.message || 'Помилка мережі', { cause: error });
     }
 }

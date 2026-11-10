@@ -6,7 +6,7 @@
             console.log(`[SLOPPY] ${label}: ${e.name}: ${e.message}`);
         }
     };
-
+    // eslint-disable-next-line no-undef
     check("Undeclared assignment", () => { undeclaredVar2 = 10; return undeclaredVar2; });
     check("this in function", function () { return String(this); });
     const frozen = Object.freeze({ a: 1 });
