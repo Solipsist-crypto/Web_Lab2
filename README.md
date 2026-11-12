@@ -2,13 +2,14 @@
 
 Цей проєкт є розвитком каталогу товарів інтернет-магазину, що поступово вдосконалюється від лабораторної роботи до лабораторної роботи в рамках курсу «Web-програмування».
 
-## 🛠 Поточний стан (ЛР5): Збирання проєкту та Sass
+## 🛠 Поточний стан (ЛР6): TypeScript
 
-На цьому етапі проєкт переведено на сучасний стек розробки:
-- Node.js 26 та npm для керування залежностями.
+На цьому етапі проєкт переведено на TypeScript:
+- TypeScript 6.0 для статичної типізації.
 - Vite як збирач модулів та сервер розробки.
-- Sass (SCSS) для стилів (замість звичайного CSS).
-- ESLint та Prettier для статичного аналізу та форматування коду.
+- Sass (SCSS) для стилів.
+- ESLint та Prettier для аналізу та форматування коду.
+- Node.js 26 та npm для керування залежностями.
 
 ## 📁 Структура проєкту
 
@@ -19,22 +20,26 @@ Lab2/
 │   │   ├── base/       # Базові стилі (_reset.scss)
 │   │   ├── components/ # Стилі компонентів (_header.scss, _card.scss тощо)
 │   │   └── main.scss   # Головний файл, що підключає всі частини
-│   ├── js/             # JavaScript-модулі
-│   │   ├── api.js      # Функція запиту до REST API
-│   │   ├── app.js      # Логіка сторінки API (ЛР4)
-│   │   ├── main.js     # Точка входу для каталогу (ЛР3)
-│   │   ├── storage.js  # Робота з localStorage
-│   │   ├── render.js   # Рендеринг карток
-│   │   ├── events.js   # Обробники подій
-│   │   ├── strict-on.js
-│   │   ├── strict-off.js
+│   ├── js/             # TypeScript-модулі
+│   │   ├── api.ts      # Функція запиту до REST API (Generics)
+│   │   ├── app.ts      # Логіка сторінки API (ЛР4)
+│   │   ├── events.ts   # Обробники подій для каталогу
+│   │   ├── main.ts     # Точка входу для каталогу
+│   │   ├── render.ts   # Рендеринг карток
+│   │   ├── storage.ts  # Робота з localStorage
+│   │   ├── types.ts    # Інтерфейси предметної області
+│   │   ├── strict-on.ts
+│   │   ├── strict-off.ts
 │   │   └── tasks/      # Завдання на власну реалізацію методів масивів
 │   └── ...             # інші ресурси
 ├── dist/               # Результат промислового збирання (генерується автоматично)
 ├── index.html          # Головна сторінка каталогу (ЛР3)
 ├── api.html            # Сторінка з REST API (ЛР4)
 ├── strict.html         # Сторінка дослідження строгого режиму (ЛР3)
-├── vite.config.js      # Конфігурація Vite
+├── vite.config.ts      # Конфігурація Vite (TypeScript)
+├── tsconfig.json       # Кореневий конфіг TypeScript
+├── tsconfig.app.json   # Конфіг для коду застосунку
+├── tsconfig.node.json  # Конфіг для vite.config.ts
 ├── package.json        # Маніфест проєкту
 ├── .env.development    # Змінні оточення для розробки
 ├── .env.production     # Змінні оточення для продакшену
@@ -68,6 +73,7 @@ Lab2/
 - npm run lint — перевірка коду ESLint.
 - npm run lint:fix — автоматичне виправлення помилок ESLint.
 - npm run format — форматування коду Prettier.
+- npx tsc -b --noEmit — перевірка типів TypeScript.
 
 ## 📚 Історія лабораторних робіт
 
@@ -76,11 +82,12 @@ Lab2/
 - ЛР3: JavaScript, DOM, події, валідація, localStorage.
 - ЛР4: Асинхронний JavaScript, Fetch API, REST API.
 - ЛР5: Node.js, npm, Vite, Sass, ESLint, Prettier.
+- ЛР6: TypeScript (інтерфейси, узагальнення, налаштування компілятора).
 
 ## 🔗 Посилання
 
-- Тег lab05: https://github.com/Solipsist-crypto/Web_Lab2/tree/lab05
-- Порівняння lab04...lab05: https://github.com/Solipsist-crypto/Web_Lab2/compare/lab04...lab05
+- Тег lab06: https://github.com/Solipsist-crypto/Web_Lab2/tree/lab06
+- Порівняння lab05...lab06: https://github.com/Solipsist-crypto/Web_Lab2/compare/lab05...lab06
 
 ---
 © 2026 Мошенський Ростислав, група ПЗск-2404
