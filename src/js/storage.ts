@@ -1,10 +1,9 @@
 import type { Product } from './types';
 
-(function (App: any) {
-    'use strict';
-    const KEY = 'it-market-products';
+const KEY = 'it-market-products';
 
-    const load = (): Product[] => {
+export const storage = {
+    load: (): Product[] => {
         try {
             const raw = localStorage.getItem(KEY);
             return raw ? JSON.parse(raw) : [];
@@ -12,13 +11,9 @@ import type { Product } from './types';
             console.warn('Storage corrupted, resetting', e);
             return [];
         }
-    };
-
-    const save = (items: Product[]): void => {
+    },
+    save: (items: Product[]): void => {
         localStorage.setItem(KEY, JSON.stringify(items));
-    };
-
-    const clear = (): void => localStorage.removeItem(KEY);
-
-    App.storage = { load, save, clear };
-})(window.App = window.App || {});
+    },
+    clear: (): void => localStorage.removeItem(KEY),
+};

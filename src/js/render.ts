@@ -1,9 +1,7 @@
 import type { Product } from './types';
 
-(function (App: any) {
-    'use strict';
-
-    const renderList = (items: Product[], container: HTMLElement, statsContainer: HTMLElement): void => {
+export const render = {
+    renderList: (items: Product[], container: HTMLElement, statsContainer: HTMLElement): void => {
         container.innerHTML = '';
         const fragment = document.createDocumentFragment();
         let selectedCount = 0;
@@ -13,7 +11,7 @@ import type { Product } from './types';
 
             const card = document.createElement('div');
             card.className = 'product-card';
-            card.dataset.id = String(item.id); // <-- String(), бо dataset приймає лише рядки
+            card.dataset.id = String(item.id);
             card.dataset.category = item.category;
 
             const img = document.createElement('img');
@@ -50,7 +48,5 @@ import type { Product } from './types';
 
         container.append(fragment);
         statsContainer.textContent = `Всього: ${items.length} | В обраному: ${selectedCount}`;
-    };
-
-    App.render = { renderList };
-})((window as any).App = (window as any).App || {});
+    },
+};

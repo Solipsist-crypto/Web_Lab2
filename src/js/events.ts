@@ -1,13 +1,9 @@
 import type { Product } from './types';
+import { storage } from './storage';
+import { render } from './render';
 
-(function (App: any) {
-    'use strict';
-
-    interface State {
-        items: Product[];
-    }
-
-    const bindEvents = (state: State, formElement: HTMLFormElement, grid: HTMLElement, stats: HTMLElement): void => {
+export const events = {
+    bindEvents: (state: { items: Product[] }, formElement: HTMLFormElement, grid: HTMLElement, stats: HTMLElement): void => {
         // === ПУНКТ 5: ДЕЛЕГУВАННЯ ПОДІЙ ===
         grid.addEventListener('click', (event: Event) => {
             const target = event.target as HTMLElement;
@@ -39,9 +35,9 @@ import type { Product } from './types';
                     const v = input.value.trim();
                     if (v.length >= 3) {
                         item.title = v;
-                        App.storage.save(state.items);
+                        storage.save(state.items);
                     }
-                    App.render.renderList(state.items, grid, stats);
+                    render.renderList(state.items, grid, stats);
                 };
                 input.addEventListener('blur', save);
                 input.addEventListener('keydown', (e: KeyboardEvent) => {
@@ -50,8 +46,8 @@ import type { Product } from './types';
                 return;
             }
 
-            App.storage.save(state.items);
-            App.render.renderList(state.items, grid, stats);
+            storage.save(state.items);
+            render.renderList(state.items, grid, stats);
         });
 
         // === ПУНКТ 7: ПОШУК, СОРТУВАННЯ, ФІЛЬТРАЦІЯ ===
@@ -87,7 +83,7 @@ import type { Product } from './types';
                 filtered = [...filtered].sort((a, b) => a.title.localeCompare(b.title));
             }
 
-            App.render.renderList(filtered, grid, stats);
+            render.renderList(filtered, grid, stats);
         };
 
         searchInput.addEventListener(
@@ -180,7 +176,7 @@ import type { Product } from './types';
                 selected: false,
             });
 
-            App.storage.save(state.items);
+            storage.save(state.items);
             applyFilters();
             formElement.reset();
             titleInput.setCustomValidity('');
@@ -193,7 +189,7 @@ import type { Product } from './types';
             clearStorageBtn.addEventListener('click', () => {
                 if (confirm('Ви впевнені, що хочете видалити ВСІ товари зі сховища?')) {
                     state.items.length = 0;
-                    App.storage.clear();
+                    storage.clear();
                     document.querySelectorAll('.filter__checkbox').forEach((cb) => {
                         (cb as HTMLInputElement).checked = false;
                     });
@@ -205,7 +201,5 @@ import type { Product } from './types';
                 }
             });
         }
-    };
-
-    App.events = { bindEvents };
-})((window as any).App = (window as any).App || {});
+    },
+};
