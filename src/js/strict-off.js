@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 (function () {
   const check = (label, fn) => {
     try {
