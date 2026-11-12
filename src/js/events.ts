@@ -170,6 +170,7 @@ export const events = {
 
             state.items.push({
                 id: Date.now(),
+                createdAt: new Date().toISOString(),
                 title,
                 price,
                 category,

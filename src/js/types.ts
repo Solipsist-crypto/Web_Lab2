@@ -1,12 +1,8 @@
+// === Типи предметної області ===
+
 export interface Product {
-    id: number;
-    title: string;
-    price: number;
-    category: string;
-    selected: boolean;
-}
-export interface Product {
-    id: number;
+    readonly id: number;
+    readonly createdAt: string;
     title: string;
     price: number;
     category: string;
@@ -32,4 +28,45 @@ export interface Comment {
     name: string;
     email: string;
     body: string;
+}
+
+// === Дискриміноване об'єднання стану ===
+
+export type RequestState =
+    | { status: 'idle' }
+    | { status: 'loading' }
+    | { status: 'success'; data: Product[] }
+    | { status: 'error'; message: string };
+
+// === Захисник типу (type guard) ===
+
+export function isProduct(value: unknown): value is Product {
+    return (
+        typeof value === 'object' &&
+        value !== null &&
+        'id' in value &&
+        typeof (value as Product).id === 'number' &&
+        'title' in value &&
+        typeof (value as Product).title === 'string' &&
+        'price' in value &&
+        typeof (value as Product).price === 'number'
+    );
+}
+
+// === Утилітарні типи ===
+
+export type ProductDraft = Omit<Product, 'id' | 'createdAt' | 'selected'>;
+export type ProductPatch = Partial<ProductDraft>;
+export type ProductCard = Pick<Product, 'id' | 'title' | 'price'>;
+export type PriceIndex = Record<string, number>;
+
+// === Типи для змінних оточення (import.meta.env) ===
+
+declare global {
+    interface ImportMetaEnv {
+        readonly VITE_API_URL: string;
+    }
+    interface ImportMeta {
+        readonly env: ImportMetaEnv;
+    }
 }
