@@ -33,3 +33,4 @@ export interface Comment {
     email: string;
     body: string;
 }
+export type LoadingState = 'idle' | 'loading' | 'success' | 'error';
