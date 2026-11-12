@@ -37,7 +37,7 @@
   }
 
   &__title {
-    font-size: $font-size-base;
+    font-size: rem(18);
     margin-bottom: $spacing-sm;
     font-weight: bold;
     flex-grow: 1;
