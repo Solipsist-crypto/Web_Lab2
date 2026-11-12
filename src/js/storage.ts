@@ -1,22 +1,24 @@
-(function (App) {
-  'use strict';
-  const KEY = 'it-market-products';
+import type { Product } from './types';
 
-  const load = () => {
-    try {
-      const raw = localStorage.getItem(KEY);
-      return raw ? JSON.parse(raw) : [];
-    } catch (e) {
-      console.warn('Storage corrupted, resetting', e);
-      return [];
-    }
-  };
+(function (App: any) {
+    'use strict';
+    const KEY = 'it-market-products';
 
-  const save = (items) => {
-    localStorage.setItem(KEY, JSON.stringify(items));
-  };
+    const load = (): Product[] => {
+        try {
+            const raw = localStorage.getItem(KEY);
+            return raw ? JSON.parse(raw) : [];
+        } catch (e) {
+            console.warn('Storage corrupted, resetting', e);
+            return [];
+        }
+    };
 
-  const clear = () => localStorage.removeItem(KEY);
+    const save = (items: Product[]): void => {
+        localStorage.setItem(KEY, JSON.stringify(items));
+    };
 
-  App.storage = { load, save, clear };
-})((window.App = window.App || {}));
+    const clear = (): void => localStorage.removeItem(KEY);
+
+    App.storage = { load, save, clear };
+})(window.App = window.App || {});
