@@ -1,31 +1,30 @@
-export async function request(url, options = {}) {
-  const defaultOptions = {
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    ...options,
-  };
+export async function request<T>(url: string, options: RequestInit = {}): Promise<T> {
+    const defaultOptions: RequestInit = {
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        ...options,
+    };
 
-  try {
-    const response = await fetch(url, defaultOptions);
-
-    // Fetch не відхиляється на 404/500, тому перевіряємо вручну
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-    }
-
-    // Захист від помилки розбору JSON
     try {
-      return await response.json();
-    } catch (e) {
-      throw new Error('Не вдалося розпарсити JSON відповіді', { cause: e });
+        const response = await fetch(url, defaultOptions);
+
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+
+        try {
+            return (await response.json()) as T;
+        } catch (e) {
+            throw new Error('Не вдалося розпарсити JSON відповіді', { cause: e });
+        }
+    } catch (error) {
+        const err = error as Error;
+        if (err.name === 'AbortError') throw err;
+        if (err.name === 'TimeoutError') {
+            throw new Error('Перевищено час очікування (5 секунд)', { cause: err });
+        }
+        throw new Error(err.message || 'Помилка мережі', { cause: err });
     }
-  } catch (error) {
-    if (error.name === 'AbortError') throw error;
-    if (error.name === 'TimeoutError') {
-      throw new Error('Перевищено час очікування (5 секунд)', { cause: error });
-    }
-    throw new Error(error.message || 'Помилка мережі', { cause: error });
-  }
 }
