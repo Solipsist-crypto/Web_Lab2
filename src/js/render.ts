@@ -1,54 +1,56 @@
-(function (App) {
-  'use strict';
+import type { Product } from './types';
 
-  const renderList = (items, container, statsContainer) => {
-    container.innerHTML = '';
-    const fragment = document.createDocumentFragment();
-    let selectedCount = 0;
+(function (App: any) {
+    'use strict';
 
-    items.forEach((item) => {
-      if (item.selected) selectedCount++;
+    const renderList = (items: Product[], container: HTMLElement, statsContainer: HTMLElement): void => {
+        container.innerHTML = '';
+        const fragment = document.createDocumentFragment();
+        let selectedCount = 0;
 
-      const card = document.createElement('div');
-      card.className = 'product-card';
-      card.dataset.id = item.id;
-      card.dataset.category = item.category;
+        items.forEach((item) => {
+            if (item.selected) selectedCount++;
 
-      const img = document.createElement('img');
-      img.src = 'https://via.placeholder.com/200x180?text=Product';
-      img.alt = item.title;
-      img.className = 'product-card__image';
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.dataset.id = String(item.id); // <-- String(), бо dataset приймає лише рядки
+            card.dataset.category = item.category;
 
-      const title = document.createElement('h3');
-      title.className = 'product-card__title';
-      title.textContent = item.title;
+            const img = document.createElement('img');
+            img.src = 'https://via.placeholder.com/200x180?text=Product';
+            img.alt = item.title;
+            img.className = 'product-card__image';
 
-      const price = document.createElement('p');
-      price.className = 'product-card__price';
-      price.textContent = `${Number(item.price).toLocaleString('uk-UA')} ₴`;
+            const title = document.createElement('h3');
+            title.className = 'product-card__title';
+            title.textContent = item.title;
 
-      const fav = document.createElement('button');
-      fav.className = `product-card__button ${item.selected ? 'product-card__button--active' : ''}`;
-      fav.textContent = item.selected ? '★ В обраному' : '☆ В обране';
-      fav.dataset.action = 'toggle';
+            const price = document.createElement('p');
+            price.className = 'product-card__price';
+            price.textContent = `${Number(item.price).toLocaleString('uk-UA')} ₴`;
 
-      const edit = document.createElement('button');
-      edit.className = 'product-card__button product-card__button--edit';
-      edit.textContent = 'Ред.';
-      edit.dataset.action = 'edit';
+            const fav = document.createElement('button');
+            fav.className = `product-card__button ${item.selected ? 'product-card__button--active' : ''}`;
+            fav.textContent = item.selected ? '★ В обраному' : '☆ В обране';
+            fav.dataset.action = 'toggle';
 
-      const del = document.createElement('button');
-      del.className = 'product-card__button product-card__button--delete';
-      del.textContent = 'Видалити';
-      del.dataset.action = 'delete';
+            const edit = document.createElement('button');
+            edit.className = 'product-card__button product-card__button--edit';
+            edit.textContent = 'Ред.';
+            edit.dataset.action = 'edit';
 
-      card.append(img, title, price, fav, edit, del);
-      fragment.append(card);
-    });
+            const del = document.createElement('button');
+            del.className = 'product-card__button product-card__button--delete';
+            del.textContent = 'Видалити';
+            del.dataset.action = 'delete';
 
-    container.append(fragment);
-    statsContainer.textContent = `Всього: ${items.length} | В обраному: ${selectedCount}`;
-  };
+            card.append(img, title, price, fav, edit, del);
+            fragment.append(card);
+        });
 
-  App.render = { renderList };
-})((window.App = window.App || {}));
+        container.append(fragment);
+        statsContainer.textContent = `Всього: ${items.length} | В обраному: ${selectedCount}`;
+    };
+
+    App.render = { renderList };
+})((window as any).App = (window as any).App || {});
