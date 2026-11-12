@@ -1,3 +1,4 @@
+// Точка входу застосунку: ініціалізація після завантаження DOM
 import type { Product } from './types';
 import { storage } from './storage';
 import { render } from './render';
